@@ -27,32 +27,167 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>Welcome to GitHub Pages.</h3>
+        
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<h1>JDeferred</h1>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<p>JDeferred is a Java Deferred/Promise library similar to JQuery.</p>
+
+<p>Inspired by <a href="https://github.com/jquery/jquery">JQuery</a> and <a href="https://github.com/CodeAndMagic/android-deferred-object">Android Deferred Object</a>.</p>
+
+<h2>Features</h2>
+
+<ul>
+<li>Deferred object and Promise</li>
+<li>Promise callbacks
+
+<ul>
+<li><code>.then(…)</code></li>
+<li><code>.done(…)</code></li>
+<li><code>.fail(…)</code></li>
+<li><code>.progress(…)</code></li>
+<li><code>.always(…)</code></li>
+</ul>
+</li>
+<li>Multiple promises
+
+<ul>
+<li><code>.when(p1, p2, p3, …).then(…)</code></li>
+</ul>
+</li>
+<li>Callable and Runnable wrappers
+
+<ul>
+<li><code>.when(new Runnable() {…})</code></li>
+</ul>
+</li>
+<li>Uses Executor Service</li>
+<li>Java Generics support
+
+<ul>
+<li><code>Deferred&lt;Integer, Exception, Double&gt; deferred;</code></li>
+<li><code>deferred.resolve(10);</code></li>
+<li><code>deferred.reject(new Exception());</code></li>
+<li><code>deferred.progress(0.80);</code></li>
+</ul>
+</li>
+</ul><h1>Quick Examples</h1>
+
+<h2>Deferred object and Promise</h2>
+
+<div class="highlight"><pre><span class="n">Deferred</span> <span class="n">deferred</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DeferredObject</span><span class="o">();</span>
+<span class="n">Promise</span> <span class="n">promise</span> <span class="o">=</span> <span class="n">deferred</span><span class="o">.</span><span class="na">promise</span><span class="o">();</span>
+<span class="n">promise</span><span class="o">.</span><span class="na">done</span><span class="o">(</span><span class="k">new</span> <span class="n">DoneCallback</span><span class="o">()</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDone</span><span class="o">(</span><span class="n">Object</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">...</span>
+  <span class="o">}</span>
+<span class="o">}).</span><span class="na">fail</span><span class="o">(</span><span class="k">new</span> <span class="n">FailCallback</span><span class="o">()</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFail</span><span class="o">(</span><span class="n">Object</span> <span class="n">rejection</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">...</span>
+  <span class="o">}</span>
+<span class="o">}).</span><span class="na">progress</span><span class="o">(</span><span class="k">new</span> <span class="n">ProgressCallback</span><span class="o">()</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onProgress</span><span class="o">(</span><span class="n">Object</span> <span class="n">progress</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">...</span>
+  <span class="o">}</span>
+<span class="o">}).</span><span class="na">always</span><span class="o">(</span><span class="k">new</span> <span class="n">AlwaysCallback</span><span class="o">()</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onAlways</span><span class="o">(</span><span class="n">State</span> <span class="n">state</span><span class="o">,</span> <span class="n">Object</span> <span class="n">result</span><span class="o">,</span> <span class="n">Object</span> <span class="n">rejection</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">...</span>
+  <span class="o">}</span>
+<span class="o">});</span>
+</pre></div>
+
+<p>With the reference to deferred object, you can then trigger actions/updates:</p>
+
+<div class="highlight"><pre><span class="n">deferred</span><span class="o">.</span><span class="na">resolve</span><span class="o">(</span><span class="s">"done"</span><span class="o">);</span>
+<span class="n">deferred</span><span class="o">.</span><span class="na">reject</span><span class="o">(</span><span class="s">"oops"</span><span class="o">);</span>
+<span class="n">deferred</span><span class="o">.</span><span class="na">progress</span><span class="o">(</span><span class="s">"100%"</span><span class="o">);</span>
+</pre></div>
+
+<h2>Filter/Pipe</h2>
+
+<div class="highlight"><pre><span class="n">Deferred</span> <span class="n">d</span> <span class="o">=</span> <span class="err">…</span><span class="o">;</span>
+<span class="n">Promise</span> <span class="n">p</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="na">promise</span><span class="o">();</span>
+<span class="n">Promise</span> <span class="n">filtered</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="k">new</span> <span class="n">DoneFilter</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;(){</span>
+  <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">filterDone</span><span class="o">(</span><span class="n">Integer</span> <span class="n">result</span><span class="o">)</span> <span class="n">P</span>
+    <span class="k">return</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">10</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">});</span>
+
+<span class="n">filtered</span><span class="o">.</span><span class="na">done</span><span class="o">(</span><span class="k">new</span> <span class="n">DoneCallback</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDone</span><span class="o">(</span><span class="n">Integer</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// result would be original * 10</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">});</span>
+
+<span class="n">d</span><span class="o">.</span><span class="na">resolve</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="mi">30</span><span class="o">.</span>
+
+</pre></div>
+
+<h2>Deferred Manager</h2>
+
+<div class="highlight"><pre><span class="n">DeferredManager</span> <span class="n">dm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultDeferredManager</span><span class="o">();</span>
+<span class="n">Promise</span> <span class="n">p1</span><span class="o">,</span> <span class="n">p2</span><span class="o">,</span> <span class="n">p3</span><span class="o">;</span>
+<span class="c1">// initialize p1, p2, p3</span>
+<span class="n">dm</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">p1</span><span class="o">,</span> <span class="n">p2</span><span class="o">,</span> <span class="n">p3</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">done</span><span class="o">(</span><span class="err">…</span><span class="o">)</span>
+  <span class="o">.</span><span class="na">fail</span><span class="o">(</span><span class="err">…</span><span class="o">)</span>
+</pre></div>
+
+<p>You can also specify a Executor Service for your need.</p>
+
+<pre><code>DeferredManager dm = new DefaultDeferredManager(myExecutorService);
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h2>Runnable and Callable</h2>
 
-<h3>Designer Templates</h3>
+<p>You can use Callable and Runnable almost like a Promise without any additional work.</p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<div class="highlight"><pre><span class="n">DeferredManager</span> <span class="n">dm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultDeferredManager</span><span class="o">();</span>
+<span class="n">dm</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="k">new</span> <span class="n">Callable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;(){</span>
+  <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">call</span><span class="o">()</span> <span class="o">{</span>
+    <span class="c1">// return something</span>
+    <span class="c1">// or throw a new exception</span>
+  <span class="o">}</span>
+<span class="o">}).</span><span class="na">done</span><span class="o">(</span><span class="k">new</span> <span class="n">DoneCallback</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;()</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDone</span><span class="o">(</span><span class="n">Integer</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">...</span>
+  <span class="o">}</span>
+<span class="o">}).</span><span class="na">fail</span><span class="o">(</span><span class="k">new</span> <span class="n">FailCallback</span><span class="o">&lt;</span><span class="n">Throwable</span><span class="o">&gt;()</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFail</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">...</span>
+  <span class="o">}</span>
+<span class="o">});</span>
+</pre></div>
 
-<h3>Rather Drive Stick?</h3>
+<p>If you need to notify progress within your Callable or Runnable, you either need to create your own Deferred object and Promise, or you can use DeferredCallable and DeferredRunnable.</p>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>Use your own Deferred object</p>
 
-<h3>Authors and Contributors</h3>
+<div class="highlight"><pre><span class="kd">final</span> <span class="n">Deferred</span> <span class="n">deferred</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">Promise</span> <span class="n">promise</span> <span class="o">=</span> <span class="n">deferred</span><span class="o">.</span><span class="na">promise</span><span class="o">();</span>
+<span class="n">promise</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="err">…</span><span class="o">);</span>
+<span class="n">Runnable</span> <span class="n">r</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">while</span> <span class="o">(</span><span class="err">…</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">deferred</span><span class="o">.</span><span class="na">progress</span><span class="o">(</span><span class="n">myProgress</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="n">deferred</span><span class="o">.</span><span class="na">resolve</span><span class="o">(</span><span class="s">"done"</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>Or, extending DeferredRunnable</p>
 
-<h3>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<div class="highlight"><pre><span class="n">DeferredManager</span> <span class="n">dm</span> <span class="o">=</span> <span class="err">…</span><span class="o">;</span>
+<span class="n">dm</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="k">new</span> <span class="n">DeferredRunnable</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;(){</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">while</span> <span class="o">(</span><span class="err">…</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">notify</span><span class="o">(</span><span class="n">myProgress</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}).</span><span class="na">then</span><span class="o">(</span><span class="err">…</span><span class="o">);</span>
+</pre></div>
       </section>
     </div>
 
