@@ -128,12 +128,12 @@
 <div class="highlight highlight-java"><pre><span class="n">Deferred</span> <span class="n">d</span> <span class="o">=</span> <span class="err">…</span><span class="o">;</span>
 <span class="n">Promise</span> <span class="n">p</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="na">promise</span><span class="o">();</span>
 <span class="n">Promise</span> <span class="n">filtered</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="k">new</span> <span class="n">DoneFilter</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;()</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">filterDone</span><span class="o">(</span><span class="n">Integer</span> <span class="n">result</span><span class="o">)</span> <span class="n">P</span>
+  <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">filterDone</span><span class="o">(</span><span class="n">Integer</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
     <span class="k">return</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">10</span><span class="o">;</span>
   <span class="o">}</span>
 <span class="o">});</span>
 
-<span class="n">filtered</span><span class="o">.</span><span class="na">done</span><span class="o">(</span><span class="k">new</span> <span class="n">DoneCallback</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;{</span>
+<span class="n">filtered</span><span class="o">.</span><span class="na">done</span><span class="o">(</span><span class="k">new</span> <span class="n">DoneCallback</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;() {</span>
   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDone</span><span class="o">(</span><span class="n">Integer</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
     <span class="c1">// result would be original * 10</span>
     <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
