@@ -2,9 +2,9 @@
 <html>
 
   <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="JDeferred : Java Deferred / Promise library" />
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="JDeferred : Java Deferred / Promise library">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
@@ -30,14 +30,14 @@
         
 
 <h1>
-<a name="jdeferred" class="anchor" href="#jdeferred"><span class="octicon octicon-link"></span></a>JDeferred</h1>
+<a id="jdeferred" class="anchor" href="#jdeferred" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>JDeferred</h1>
 
 <p>JDeferred is a Java Deferred/Promise library similar to JQuery's Deferred Object.</p>
 
 <p>Inspired by <a href="https://github.com/jquery/jquery">JQuery</a> and <a href="https://github.com/CodeAndMagic/android-deferred-object">Android Deferred Object</a>.</p>
 
 <h2>
-<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a><a name="features"></a>Features</h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="features"></a>Features</h2>
 
 <ul>
 <li>Deferred object and Promise</li>
@@ -70,114 +70,118 @@
 <li><code>Deferred&lt;Integer, Exception, Double&gt; deferred;</code></li>
 <li><code>deferred.resolve(10);</code></li>
 <li><code>deferred.reject(new Exception());</code></li>
-<li><code>deferred.progress(0.80);</code></li>
+<li><code>deferred.notify(0.80);</code></li>
 </ul>
 </li>
 <li>Android Support</li>
 <li>Java 8 Lambda friendly</li>
 <li>Yes it's on Maven Central Repository!</li>
-</ul><h2>
-<a name="maven" class="anchor" href="#maven"><span class="octicon octicon-link"></span></a>Maven</h2>
+</ul>
 
-<div class="highlight highlight-xml"><pre><span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.jdeferred<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>jdeferred-core<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>${version}<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</pre></div>
+<h2>
+<a id="maven" class="anchor" href="#maven" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Maven</h2>
+
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">dependency</span>&gt;
+    &lt;<span class="pl-ent">groupId</span>&gt;org.jdeferred&lt;/<span class="pl-ent">groupId</span>&gt;
+    &lt;<span class="pl-ent">artifactId</span>&gt;jdeferred-core&lt;/<span class="pl-ent">artifactId</span>&gt;
+    &lt;<span class="pl-ent">version</span>&gt;${version}&lt;/<span class="pl-ent">version</span>&gt;
+&lt;/<span class="pl-ent">dependency</span>&gt;</pre></div>
+
+<h2>
+<a id="gradle" class="anchor" href="#gradle" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Gradle</h2>
+
+<pre><code>compile 'org.jdeferred:jdeferred-android-aar:${version}'
+// or
+compile 'org.jdeferred:jdeferred-android-aar:${version}@aar'
+</code></pre>
 
 <p>Find available versions on <a href="http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.jdeferred%22%20AND%20a%3A%22jdeferred-core%22">Maven Central Repository</a>.</p>
 
 <h1>
-<a name="quick-examples" class="anchor" href="#quick-examples"><span class="octicon octicon-link"></span></a><a name="examples"></a>Quick Examples</h1>
+<a id="quick-examples" class="anchor" href="#quick-examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="examples"></a>Quick Examples</h1>
 
 <h2>
-<a name="deferred-object-and-promise" class="anchor" href="#deferred-object-and-promise"><span class="octicon octicon-link"></span></a><a name="examples-deferred-promise"></a>Deferred object and Promise</h2>
+<a id="deferred-object-and-promise" class="anchor" href="#deferred-object-and-promise" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="examples-deferred-promise"></a>Deferred object and Promise</h2>
 
-<div class="highlight highlight-java"><pre><span class="n">Deferred</span> <span class="n">deferred</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DeferredObject</span><span class="o">();</span>
-<span class="n">Promise</span> <span class="n">promise</span> <span class="o">=</span> <span class="n">deferred</span><span class="o">.</span><span class="na">promise</span><span class="o">();</span>
-<span class="n">promise</span><span class="o">.</span><span class="na">done</span><span class="o">(</span><span class="k">new</span> <span class="n">DoneCallback</span><span class="o">()</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDone</span><span class="o">(</span><span class="n">Object</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
-    <span class="o">...</span>
-  <span class="o">}</span>
-<span class="o">}).</span><span class="na">fail</span><span class="o">(</span><span class="k">new</span> <span class="n">FailCallback</span><span class="o">()</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFail</span><span class="o">(</span><span class="n">Object</span> <span class="n">rejection</span><span class="o">)</span> <span class="o">{</span>
-    <span class="o">...</span>
-  <span class="o">}</span>
-<span class="o">}).</span><span class="na">progress</span><span class="o">(</span><span class="k">new</span> <span class="n">ProgressCallback</span><span class="o">()</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onProgress</span><span class="o">(</span><span class="n">Object</span> <span class="n">progress</span><span class="o">)</span> <span class="o">{</span>
-    <span class="o">...</span>
-  <span class="o">}</span>
-<span class="o">}).</span><span class="na">always</span><span class="o">(</span><span class="k">new</span> <span class="n">AlwaysCallback</span><span class="o">()</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onAlways</span><span class="o">(</span><span class="n">State</span> <span class="n">state</span><span class="o">,</span> <span class="n">Object</span> <span class="n">result</span><span class="o">,</span> <span class="n">Object</span> <span class="n">rejection</span><span class="o">)</span> <span class="o">{</span>
-    <span class="o">...</span>
-  <span class="o">}</span>
-<span class="o">});</span>
-</pre></div>
+<div class="highlight highlight-source-java"><pre><span class="pl-smi">Deferred</span> deferred <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">DeferredObject</span>();
+<span class="pl-smi">Promise</span> promise <span class="pl-k">=</span> deferred<span class="pl-k">.</span>promise();
+promise<span class="pl-k">.</span>done(<span class="pl-k">new</span> <span class="pl-smi">DoneCallback</span>() {
+  <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onDone</span>(<span class="pl-smi">Object</span> <span class="pl-v">result</span>) {
+    <span class="pl-c1">...</span>
+  }
+})<span class="pl-k">.</span>fail(<span class="pl-k">new</span> <span class="pl-smi">FailCallback</span>() {
+  <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onFail</span>(<span class="pl-smi">Object</span> <span class="pl-v">rejection</span>) {
+    <span class="pl-c1">...</span>
+  }
+})<span class="pl-k">.</span>progress(<span class="pl-k">new</span> <span class="pl-smi">ProgressCallback</span>() {
+  <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onProgress</span>(<span class="pl-smi">Object</span> <span class="pl-v">progress</span>) {
+    <span class="pl-c1">...</span>
+  }
+})<span class="pl-k">.</span>always(<span class="pl-k">new</span> <span class="pl-smi">AlwaysCallback</span>() {
+  <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onAlways</span>(<span class="pl-smi">State</span> <span class="pl-v">state</span>, <span class="pl-smi">Object</span> <span class="pl-v">result</span>, <span class="pl-smi">Object</span> <span class="pl-v">rejection</span>) {
+    <span class="pl-c1">...</span>
+  }
+});</pre></div>
 
 <p>With the reference to deferred object, you can then trigger actions/updates:</p>
 
-<div class="highlight highlight-java"><pre><span class="n">deferred</span><span class="o">.</span><span class="na">resolve</span><span class="o">(</span><span class="s">"done"</span><span class="o">);</span>
-<span class="n">deferred</span><span class="o">.</span><span class="na">reject</span><span class="o">(</span><span class="s">"oops"</span><span class="o">);</span>
-<span class="n">deferred</span><span class="o">.</span><span class="na">progress</span><span class="o">(</span><span class="s">"100%"</span><span class="o">);</span>
-</pre></div>
+<div class="highlight highlight-source-java"><pre>deferred<span class="pl-k">.</span>resolve(<span class="pl-s"><span class="pl-pds">"</span>done<span class="pl-pds">"</span></span>);
+deferred<span class="pl-k">.</span>reject(<span class="pl-s"><span class="pl-pds">"</span>oops<span class="pl-pds">"</span></span>);
+deferred<span class="pl-k">.</span>notify(<span class="pl-s"><span class="pl-pds">"</span>100%<span class="pl-pds">"</span></span>);</pre></div>
 
 <h2>
-<a name="filter" class="anchor" href="#filter"><span class="octicon octicon-link"></span></a><a name="example-filter"></a>Filter</h2>
+<a id="filter" class="anchor" href="#filter" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="example-filter"></a>Filter</h2>
 
-<div class="highlight highlight-java"><pre><span class="n">Deferred</span> <span class="n">d</span> <span class="o">=</span> <span class="err">…</span><span class="o">;</span>
-<span class="n">Promise</span> <span class="n">p</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="na">promise</span><span class="o">();</span>
-<span class="n">Promise</span> <span class="n">filtered</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="k">new</span> <span class="n">DoneFilter</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;()</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">filterDone</span><span class="o">(</span><span class="n">Integer</span> <span class="n">result</span><span class="o">)</span> <span class="n">P</span>
-    <span class="k">return</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">10</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">});</span>
+<div class="highlight highlight-source-java"><pre><span class="pl-smi">Deferred</span> d <span class="pl-k">=</span> …;
+<span class="pl-smi">Promise</span> p <span class="pl-k">=</span> d<span class="pl-k">.</span>promise();
+<span class="pl-smi">Promise</span> filtered <span class="pl-k">=</span> p<span class="pl-k">.</span>then(<span class="pl-k">new</span> <span class="pl-k">DoneFilter&lt;<span class="pl-smi">Integer</span>, <span class="pl-smi">Integer</span>&gt;</span>() {
+  <span class="pl-k">public</span> <span class="pl-smi">Integer</span> <span class="pl-en">filterDone</span>(<span class="pl-smi">Integer</span> <span class="pl-v">result</span>)
+    return result * 10;
+  }
+});
 
-<span class="n">filtered</span><span class="o">.</span><span class="na">done</span><span class="o">(</span><span class="k">new</span> <span class="n">DoneCallback</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;{</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDone</span><span class="o">(</span><span class="n">Integer</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// result would be original * 10</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
-  <span class="o">}</span>
-<span class="o">});</span>
+filtered<span class="pl-k">.</span>done(<span class="pl-k">new</span> <span class="pl-k">DoneCallback&lt;<span class="pl-smi">Integer</span>&gt;</span>() {
+  <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onDone</span>(<span class="pl-smi">Integer</span> <span class="pl-v">result</span>) {
+    <span class="pl-c">// result would be original * 10</span>
+    <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(result);
+  }
+});
 
-<span class="n">d</span><span class="o">.</span><span class="na">resolve</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="mi">30</span><span class="o">.</span>
-</pre></div>
+d<span class="pl-k">.</span>resolve(<span class="pl-c1">3</span>) <span class="pl-k">-</span><span class="pl-k">&gt;</span> <span class="pl-c1">30.</span></pre></div>
 
 <h2>
-<a name="pipe" class="anchor" href="#pipe"><span class="octicon octicon-link"></span></a><a name="example-pipe"></a>Pipe</h2>
+<a id="pipe" class="anchor" href="#pipe" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="example-pipe"></a>Pipe</h2>
 
 <blockquote>
 <p>Since 1.1.0-Beta1</p>
 </blockquote>
 
-<div class="highlight highlight-java"><pre><span class="n">Deferred</span> <span class="n">d</span> <span class="o">=</span> <span class="o">...;</span>
-<span class="n">Promise</span> <span class="n">p</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="na">promise</span><span class="o">();</span>
+<div class="highlight highlight-source-java"><pre><span class="pl-smi">Deferred</span> d <span class="pl-k">=</span> <span class="pl-c1">...</span>;
+<span class="pl-smi">Promise</span> p <span class="pl-k">=</span> d<span class="pl-k">.</span>promise();
 
-<span class="n">p</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="k">new</span> <span class="n">DonePipe</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">,</span> <span class="n">Exception</span><span class="o">,</span> <span class="n">Void</span><span class="o">&gt;()</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="n">Deferred</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Exception</span><span class="o">,</span> <span class="n">Void</span><span class="o">&gt;</span> <span class="n">pipeDone</span><span class="o">(</span><span class="n">Integer</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">result</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="o">)</span> <span class="o">{</span>
-      <span class="k">return</span> <span class="k">new</span> <span class="n">DeferredObject</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Void</span><span class="o">,</span> <span class="n">Void</span><span class="o">&gt;().</span><span class="na">resolve</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-      <span class="k">return</span> <span class="k">new</span> <span class="n">DeferredObject</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Void</span><span class="o">,</span> <span class="n">Void</span><span class="o">&gt;().</span><span class="na">reject</span><span class="o">(</span><span class="k">new</span> <span class="n">Exception</span><span class="o">(...));</span>
-    <span class="o">}</span>
-  <span class="o">}</span>
-<span class="o">}).</span><span class="na">done</span><span class="o">(...).</span><span class="na">fail</span><span class="o">(...);</span>
+p<span class="pl-k">.</span>then(<span class="pl-k">new</span> <span class="pl-k">DonePipe&lt;<span class="pl-smi">Integer</span>, <span class="pl-smi">Integer</span>, <span class="pl-smi">Exception</span>, <span class="pl-smi">Void</span>&gt;</span>() {
+  <span class="pl-k">public</span> <span class="pl-k">Deferred&lt;<span class="pl-smi">Integer</span>, <span class="pl-smi">Exception</span>, <span class="pl-smi">Void</span>&gt;</span> <span class="pl-en">pipeDone</span>(<span class="pl-smi">Integer</span> <span class="pl-v">result</span>) {
+    <span class="pl-k">if</span> (result <span class="pl-k">&lt;</span> <span class="pl-c1">100</span>) {
+      <span class="pl-k">return</span> <span class="pl-k">new</span> <span class="pl-k">DeferredObject&lt;<span class="pl-smi">Integer</span>, <span class="pl-smi">Void</span>, <span class="pl-smi">Void</span>&gt;</span>()<span class="pl-k">.</span>resolve(result);
+    } <span class="pl-k">else</span> {
+      <span class="pl-k">return</span> <span class="pl-k">new</span> <span class="pl-k">DeferredObject&lt;<span class="pl-smi">Integer</span>, <span class="pl-smi">Void</span>, <span class="pl-smi">Void</span>&gt;</span>()<span class="pl-k">.</span>reject(<span class="pl-k">new</span> <span class="pl-smi">Exception</span>(<span class="pl-c1">...</span>));
+    }
+  }
+})<span class="pl-k">.</span>done(<span class="pl-c1">...</span>)<span class="pl-k">.</span>fail(<span class="pl-c1">...</span>);
 
-<span class="n">d</span><span class="o">.</span><span class="na">resolve</span><span class="o">(</span><span class="mi">80</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">done</span><span class="o">!</span>
-<span class="n">d</span><span class="o">.</span><span class="na">resolve</span><span class="o">(</span><span class="mi">100</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">fail</span><span class="o">!</span>
-
+d<span class="pl-k">.</span>resolve(<span class="pl-c1">80</span>) <span class="pl-k">-</span><span class="pl-k">&gt;</span> done<span class="pl-k">!</span>
+d<span class="pl-k">.</span>resolve(<span class="pl-c1">100</span>) <span class="pl-k">-</span><span class="pl-k">&gt;</span> fail<span class="pl-k">!</span>
 </pre></div>
 
 <h2>
-<a name="deferred-manager" class="anchor" href="#deferred-manager"><span class="octicon octicon-link"></span></a><a name="example-dm"></a>Deferred Manager</h2>
+<a id="deferred-manager" class="anchor" href="#deferred-manager" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="example-dm"></a>Deferred Manager</h2>
 
-<div class="highlight highlight-java"><pre><span class="n">DeferredManager</span> <span class="n">dm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultDeferredManager</span><span class="o">();</span>
-<span class="n">Promise</span> <span class="n">p1</span><span class="o">,</span> <span class="n">p2</span><span class="o">,</span> <span class="n">p3</span><span class="o">;</span>
-<span class="c1">// initialize p1, p2, p3</span>
-<span class="n">dm</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">p1</span><span class="o">,</span> <span class="n">p2</span><span class="o">,</span> <span class="n">p3</span><span class="o">)</span>
-  <span class="o">.</span><span class="na">done</span><span class="o">(</span><span class="err">…</span><span class="o">)</span>
-  <span class="o">.</span><span class="na">fail</span><span class="o">(</span><span class="err">…</span><span class="o">)</span>
-</pre></div>
+<div class="highlight highlight-source-java"><pre><span class="pl-smi">DeferredManager</span> dm <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">DefaultDeferredManager</span>();
+<span class="pl-smi">Promise</span> p1, p2, p3;
+<span class="pl-c">// initialize p1, p2, p3</span>
+dm<span class="pl-k">.</span>when(p1, p2, p3)
+  .done(…)
+  .fail(…)</pre></div>
 
 <p>You can also specify a Executor Service for your need.</p>
 
@@ -185,58 +189,55 @@
 </code></pre>
 
 <h2>
-<a name="runnable-and-callable" class="anchor" href="#runnable-and-callable"><span class="octicon octicon-link"></span></a><a name="example-runnable-callable"></a>Runnable and Callable</h2>
+<a id="runnable-and-callable" class="anchor" href="#runnable-and-callable" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="example-runnable-callable"></a>Runnable and Callable</h2>
 
 <p>You can use Callable and Runnable almost like a Promise without any additional work.</p>
 
-<div class="highlight highlight-java"><pre><span class="n">DeferredManager</span> <span class="n">dm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultDeferredManager</span><span class="o">();</span>
-<span class="n">dm</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="k">new</span> <span class="n">Callable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;(){</span>
-  <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">call</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">// return something</span>
-    <span class="c1">// or throw a new exception</span>
-  <span class="o">}</span>
-<span class="o">}).</span><span class="na">done</span><span class="o">(</span><span class="k">new</span> <span class="n">DoneCallback</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;()</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDone</span><span class="o">(</span><span class="n">Integer</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
-    <span class="o">...</span>
-  <span class="o">}</span>
-<span class="o">}).</span><span class="na">fail</span><span class="o">(</span><span class="k">new</span> <span class="n">FailCallback</span><span class="o">&lt;</span><span class="n">Throwable</span><span class="o">&gt;()</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFail</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="o">...</span>
-  <span class="o">}</span>
-<span class="o">});</span>
-</pre></div>
+<div class="highlight highlight-source-java"><pre><span class="pl-smi">DeferredManager</span> dm <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">DefaultDeferredManager</span>();
+dm<span class="pl-k">.</span>when(<span class="pl-k">new</span> <span class="pl-k">Callable&lt;<span class="pl-smi">Integer</span>&gt;</span>(){
+  <span class="pl-k">public</span> <span class="pl-smi">Integer</span> <span class="pl-en">call</span>() {
+    <span class="pl-c">// return something</span>
+    <span class="pl-c">// or throw a new exception</span>
+  }
+})<span class="pl-k">.</span>done(<span class="pl-k">new</span> <span class="pl-k">DoneCallback&lt;<span class="pl-smi">Integer</span>&gt;</span>() {
+  <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onDone</span>(<span class="pl-smi">Integer</span> <span class="pl-v">result</span>) {
+    <span class="pl-c1">...</span>
+  }
+})<span class="pl-k">.</span>fail(<span class="pl-k">new</span> <span class="pl-k">FailCallback&lt;<span class="pl-smi">Throwable</span>&gt;</span>() {
+  <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onFail</span>(<span class="pl-smi">Throwable</span> <span class="pl-v">e</span>) {
+    <span class="pl-c1">...</span>
+  }
+});</pre></div>
 
 <p>If you need to notify progress within your Callable or Runnable, you either need to create your own Deferred object and Promise, or you can use DeferredCallable and DeferredRunnable.</p>
 
 <p>Use your own Deferred object</p>
 
-<div class="highlight highlight-java"><pre><span class="kd">final</span> <span class="n">Deferred</span> <span class="n">deferred</span> <span class="o">=</span> <span class="o">...</span>
-<span class="n">Promise</span> <span class="n">promise</span> <span class="o">=</span> <span class="n">deferred</span><span class="o">.</span><span class="na">promise</span><span class="o">();</span>
-<span class="n">promise</span><span class="o">.</span><span class="na">then</span><span class="o">(</span><span class="err">…</span><span class="o">);</span>
-<span class="n">Runnable</span> <span class="n">r</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">while</span> <span class="o">(</span><span class="err">…</span><span class="o">)</span> <span class="o">{</span>
-      <span class="n">deferred</span><span class="o">.</span><span class="na">notify</span><span class="o">(</span><span class="n">myProgress</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="n">deferred</span><span class="o">.</span><span class="na">resolve</span><span class="o">(</span><span class="s">"done"</span><span class="o">);</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
+<div class="highlight highlight-source-java"><pre><span class="pl-k">final</span> <span class="pl-smi">Deferred</span> deferred <span class="pl-k">=</span> <span class="pl-c1">...</span>
+<span class="pl-smi">Promise</span> promise <span class="pl-k">=</span> deferred<span class="pl-k">.</span>promise();
+promise<span class="pl-k">.</span>then(…);
+<span class="pl-smi">Runnable</span> r <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">Runnable</span>() {
+  <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">run</span>() {
+    <span class="pl-k">while</span> (…) {
+      deferred<span class="pl-k">.</span>notify(myProgress);
+    }
+    deferred<span class="pl-k">.</span>resolve(<span class="pl-s"><span class="pl-pds">"</span>done<span class="pl-pds">"</span></span>);
+  }
+}</pre></div>
 
 <p>Or, extending DeferredRunnable</p>
 
-<div class="highlight highlight-java"><pre><span class="n">DeferredManager</span> <span class="n">dm</span> <span class="o">=</span> <span class="err">…</span><span class="o">;</span>
-<span class="n">dm</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="k">new</span> <span class="n">DeferredRunnable</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;(){</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">while</span> <span class="o">(</span><span class="err">…</span><span class="o">)</span> <span class="o">{</span>
-      <span class="n">notify</span><span class="o">(</span><span class="n">myProgress</span><span class="o">);</span>
-    <span class="o">}</span>
-  <span class="o">}</span>
-<span class="o">}).</span><span class="na">then</span><span class="o">(</span><span class="err">…</span><span class="o">);</span>
-</pre></div>
+<div class="highlight highlight-source-java"><pre><span class="pl-smi">DeferredManager</span> dm <span class="pl-k">=</span> …;
+dm<span class="pl-k">.</span>when(<span class="pl-k">new</span> <span class="pl-k">DeferredRunnable&lt;<span class="pl-smi">Double</span>&gt;</span>(){
+  <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">run</span>() {
+    <span class="pl-k">while</span> (…) {
+      notify(myProgress);
+    }
+  }
+})<span class="pl-k">.</span>then(…);</pre></div>
 
 <h2>
-<a name="wait-and-waitsafely" class="anchor" href="#wait-and-waitsafely"><span class="octicon octicon-link"></span></a><a name="example-wait"></a>Wait and WaitSafely</h2>
+<a id="wait-and-waitsafely" class="anchor" href="#wait-and-waitsafely" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="example-wait"></a>Wait and WaitSafely</h2>
 
 <blockquote>
 <p>Since 1.0.1</p>
@@ -244,34 +245,32 @@
 
 <p>Normally, when using this framework, you would want to do things asynchronously.  However, if there is a need to wait for all deferred tasks to finish, you can use Object.wait or Promise.waitSafely methods.</p>
 
-<div class="highlight highlight-java"><pre><span class="n">Promise</span> <span class="n">p</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="na">when</span><span class="o">(...)</span>
-  <span class="o">.</span><span class="na">done</span><span class="o">(...)</span>
-  <span class="o">.</span><span class="na">fail</span><span class="o">(...)</span>
+<div class="highlight highlight-source-java"><pre><span class="pl-smi">Promise</span> p <span class="pl-k">=</span> dm<span class="pl-k">.</span>when(<span class="pl-c1">...</span>)
+  .done(<span class="pl-c1">...</span>)
+  .fail(<span class="pl-c1">...</span>)
 
-<span class="kd">synchronized</span> <span class="o">(</span><span class="n">p</span><span class="o">)</span>
-  <span class="k">while</span> <span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">isPending</span><span class="o">())</span> <span class="o">{</span>
-    <span class="k">try</span> <span class="o">{</span>
-      <span class="n">p</span><span class="o">.</span><span class="na">wait</span><span class="o">();</span>
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
+<span class="pl-k">synchronized</span> (p)
+  <span class="pl-k">while</span> (p<span class="pl-k">.</span>isPending()) {
+    <span class="pl-k">try</span> {
+      p<span class="pl-k">.</span>wait();
+    } <span class="pl-k">catch</span> (<span class="pl-smi">InterruptedException</span> e) { <span class="pl-c1">...</span> }
+  }
+}</pre></div>
 
 <p>Alternatively, you can use a more simplified shortcut</p>
 
-<div class="highlight highlight-java"><pre><span class="n">Promise</span> <span class="n">p</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="na">when</span><span class="o">(...)</span>
-  <span class="o">.</span><span class="na">done</span><span class="o">(...)</span>
-  <span class="o">.</span><span class="na">fail</span><span class="o">(...)</span>
+<div class="highlight highlight-source-java"><pre><span class="pl-smi">Promise</span> p <span class="pl-k">=</span> dm<span class="pl-k">.</span>when(<span class="pl-c1">...</span>)
+  .done(<span class="pl-c1">...</span>)
+  .fail(<span class="pl-c1">...</span>)
 
-<span class="k">try</span> <span class="o">{</span>
-  <span class="n">p</span><span class="o">.</span><span class="na">waitSafely</span><span class="o">();</span>
-<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-  <span class="o">...</span> 
-<span class="o">}</span>
-</pre></div>
+<span class="pl-k">try</span> {
+  p<span class="pl-k">.</span>waitSafely();
+} <span class="pl-k">catch</span> (<span class="pl-smi">InterruptedException</span> e) {
+  <span class="pl-c1">...</span> 
+}</pre></div>
 
 <h2>
-<a name="android-support" class="anchor" href="#android-support"><span class="octicon octicon-link"></span></a><a name="example-android"></a>Android Support</h2>
+<a id="android-support" class="anchor" href="#android-support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="example-android"></a>Android Support</h2>
 
 <blockquote>
 <p>Since 1.1.0-Beta1</p>
@@ -283,13 +282,12 @@ dependency:</p>
 
 <p>APKLIB:</p>
 
-<div class="highlight highlight-xml"><pre><span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>org.jdeferred<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>jdeferred-android<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>...<span class="nt">&lt;/version&gt;</span>
-  <span class="nt">&lt;type&gt;</span>apklib<span class="nt">&lt;/type&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</pre></div>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">dependency</span>&gt;
+  &lt;<span class="pl-ent">groupId</span>&gt;org.jdeferred&lt;/<span class="pl-ent">groupId</span>&gt;
+  &lt;<span class="pl-ent">artifactId</span>&gt;jdeferred-android&lt;/<span class="pl-ent">artifactId</span>&gt;
+  &lt;<span class="pl-ent">version</span>&gt;...&lt;/<span class="pl-ent">version</span>&gt;
+  &lt;<span class="pl-ent">type</span>&gt;apklib&lt;/<span class="pl-ent">type</span>&gt;
+&lt;/<span class="pl-ent">dependency</span>&gt;</pre></div>
 
 <p>AAR:</p>
 
@@ -297,13 +295,12 @@ dependency:</p>
 <p>Since 1.2.0-Beta1</p>
 </blockquote>
 
-<div class="highlight highlight-xml"><pre><span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>org.jdeferred<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>jdeferred-android-aar<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>...<span class="nt">&lt;/version&gt;</span>
-  <span class="nt">&lt;type&gt;</span>aar<span class="nt">&lt;/type&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>
-</pre></div>
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">dependency</span>&gt;
+  &lt;<span class="pl-ent">groupId</span>&gt;org.jdeferred&lt;/<span class="pl-ent">groupId</span>&gt;
+  &lt;<span class="pl-ent">artifactId</span>&gt;jdeferred-android-aar&lt;/<span class="pl-ent">artifactId</span>&gt;
+  &lt;<span class="pl-ent">version</span>&gt;...&lt;/<span class="pl-ent">version</span>&gt;
+  &lt;<span class="pl-ent">type</span>&gt;aar&lt;/<span class="pl-ent">type</span>&gt;
+&lt;/<span class="pl-ent">dependency</span>&gt;</pre></div>
 
 <p><code>jdeferred-android</code> introduces a new <code>DeferredManager</code> implementation called <code>AndroidDeferredManager</code>.
 <code>AndroidDeferredManager</code> makes sure that callbacks are executed in UI Thread rather than background Thread
@@ -318,69 +315,101 @@ Android's <code>AsyncTask</code>.</p>
 <p>Lastly, because JDeferred use SLF4J - you can further route log messages using <code>slf4j-android</code>.</p>
 
 <h2>
-<a name="asynchronous-servlet" class="anchor" href="#asynchronous-servlet"><span class="octicon octicon-link"></span></a><a name="example-async-servlet"></a>Asynchronous Servlet</h2>
+<a id="asynchronous-servlet" class="anchor" href="#asynchronous-servlet" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="example-async-servlet"></a>Asynchronous Servlet</h2>
 
 <p>Here is a sample code on how to use JDeferred with Asynchronous Servlet!</p>
 
-<div class="highlight highlight-java"><pre><span class="nd">@WebServlet</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"/AsyncServlet"</span><span class="o">,</span> <span class="n">asyncSupported</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AsyncServlet</span> <span class="kd">extends</span> <span class="n">HttpServlet</span> <span class="o">{</span>
-  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">serialVersionUID</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">;</span>
-  <span class="kd">private</span> <span class="n">ExecutorService</span> <span class="n">executorService</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newCachedThreadPool</span><span class="o">();</span>
-  <span class="kd">private</span> <span class="n">DeferredManager</span> <span class="n">dm</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultDeferredManager</span><span class="o">(</span><span class="n">executorService</span><span class="o">);</span>
+<div class="highlight highlight-source-java"><pre>@WebServlet(value <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>/AsyncServlet<span class="pl-pds">"</span></span>, asyncSupported <span class="pl-k">=</span> <span class="pl-c1">true</span>)
+<span class="pl-k">public</span> <span class="pl-k">class</span> <span class="pl-en">AsyncServlet</span> <span class="pl-k">extends</span> <span class="pl-e">HttpServlet</span> {
+  <span class="pl-k">private</span> <span class="pl-k">static</span> <span class="pl-k">final</span> <span class="pl-k">long</span> serialVersionUID <span class="pl-k">=</span> <span class="pl-c1">1L</span>;
+  <span class="pl-k">private</span> <span class="pl-smi">ExecutorService</span> executorService <span class="pl-k">=</span> <span class="pl-smi">Executors</span><span class="pl-k">.</span>newCachedThreadPool();
+  <span class="pl-k">private</span> <span class="pl-smi">DeferredManager</span> dm <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">DefaultDeferredManager</span>(executorService);
 
-  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">doGet</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">,</span>
-                       <span class="n">HttpServletResponse</span> <span class="n">response</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">ServletException</span><span class="o">,</span> <span class="n">IOException</span> <span class="o">{</span>
-    <span class="kd">final</span> <span class="n">AsyncContext</span> <span class="n">actx</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">startAsync</span><span class="o">(</span><span class="n">request</span><span class="o">,</span> <span class="n">response</span><span class="o">);</span>
+  <span class="pl-k">protected</span> <span class="pl-k">void</span> <span class="pl-en">doGet</span>(<span class="pl-smi">HttpServletRequest</span> <span class="pl-v">request</span>,
+                       <span class="pl-smi">HttpServletResponse</span> <span class="pl-v">response</span>) <span class="pl-k">throws</span> <span class="pl-smi">ServletException</span>, <span class="pl-smi">IOException</span> {
+    <span class="pl-k">final</span> <span class="pl-smi">AsyncContext</span> actx <span class="pl-k">=</span> request<span class="pl-k">.</span>startAsync(request, response);
 
-    <span class="n">dm</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="k">new</span> <span class="n">Callable</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
-      <span class="nd">@Override</span>
-      <span class="kd">public</span> <span class="n">String</span> <span class="nf">call</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">actx</span><span class="o">.</span><span class="na">getRequest</span><span class="o">().</span><span class="na">getParameter</span><span class="o">(</span><span class="s">"fail"</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-          <span class="k">throw</span> <span class="k">new</span> <span class="nf">Exception</span><span class="o">(</span><span class="s">"oops!"</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">2000</span><span class="o">);</span>
-        <span class="k">return</span> <span class="s">"Hello World!"</span><span class="o">;</span>
-      <span class="o">}</span>
-    <span class="o">}).</span><span class="na">then</span><span class="o">(</span><span class="k">new</span> <span class="n">DoneCallback</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
-      <span class="nd">@Override</span>
-      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDone</span><span class="o">(</span><span class="n">String</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">actx</span><span class="o">.</span><span class="na">getRequest</span><span class="o">().</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">"message"</span><span class="o">,</span> <span class="n">result</span><span class="o">);</span>
-        <span class="n">actx</span><span class="o">.</span><span class="na">dispatch</span><span class="o">(</span><span class="s">"/hello.jsp"</span><span class="o">);</span>
-      <span class="o">}</span>
-    <span class="o">}).</span><span class="na">fail</span><span class="o">(</span><span class="k">new</span> <span class="n">FailCallback</span><span class="o">&lt;</span><span class="n">Throwable</span><span class="o">&gt;()</span> <span class="o">{</span>
-      <span class="nd">@Override</span>
-      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFail</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">exception</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">actx</span><span class="o">.</span><span class="na">getRequest</span><span class="o">().</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">"exception"</span><span class="o">,</span> <span class="n">exception</span><span class="o">);</span>
-        <span class="n">actx</span><span class="o">.</span><span class="na">dispatch</span><span class="o">(</span><span class="s">"/error.jsp"</span><span class="o">);</span>
-      <span class="o">}</span>
-    <span class="o">});</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
+    dm<span class="pl-k">.</span>when(<span class="pl-k">new</span> <span class="pl-k">Callable&lt;<span class="pl-smi">String</span>&gt;</span>() {
+      <span class="pl-k">@Override</span>
+      <span class="pl-k">public</span> <span class="pl-smi">String</span> <span class="pl-en">call</span>() <span class="pl-k">throws</span> <span class="pl-smi">Exception</span> {
+        <span class="pl-k">if</span> (actx<span class="pl-k">.</span>getRequest()<span class="pl-k">.</span>getParameter(<span class="pl-s"><span class="pl-pds">"</span>fail<span class="pl-pds">"</span></span>) <span class="pl-k">!=</span> <span class="pl-c1">null</span>) {
+          <span class="pl-k">throw</span> <span class="pl-k">new</span> <span class="pl-smi">Exception</span>(<span class="pl-s"><span class="pl-pds">"</span>oops!<span class="pl-pds">"</span></span>);
+        }
+        <span class="pl-smi">Thread</span><span class="pl-k">.</span>sleep(<span class="pl-c1">2000</span>);
+        <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>Hello World!<span class="pl-pds">"</span></span>;
+      }
+    })<span class="pl-k">.</span>then(<span class="pl-k">new</span> <span class="pl-k">DoneCallback&lt;<span class="pl-smi">String</span>&gt;</span>() {
+      <span class="pl-k">@Override</span>
+      <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onDone</span>(<span class="pl-smi">String</span> <span class="pl-v">result</span>) {
+        actx<span class="pl-k">.</span>getRequest()<span class="pl-k">.</span>setAttribute(<span class="pl-s"><span class="pl-pds">"</span>message<span class="pl-pds">"</span></span>, result);
+        actx<span class="pl-k">.</span>dispatch(<span class="pl-s"><span class="pl-pds">"</span>/hello.jsp<span class="pl-pds">"</span></span>);
+      }
+    })<span class="pl-k">.</span>fail(<span class="pl-k">new</span> <span class="pl-k">FailCallback&lt;<span class="pl-smi">Throwable</span>&gt;</span>() {
+      <span class="pl-k">@Override</span>
+      <span class="pl-k">public</span> <span class="pl-k">void</span> <span class="pl-en">onFail</span>(<span class="pl-smi">Throwable</span> <span class="pl-v">exception</span>) {
+        actx<span class="pl-k">.</span>getRequest()<span class="pl-k">.</span>setAttribute(<span class="pl-s"><span class="pl-pds">"</span>exception<span class="pl-pds">"</span></span>, exception);
+        actx<span class="pl-k">.</span>dispatch(<span class="pl-s"><span class="pl-pds">"</span>/error.jsp<span class="pl-pds">"</span></span>);
+      }
+    });
+  }
+}</pre></div>
 
 <h2>
-<a name="java-8-lambda" class="anchor" href="#java-8-lambda"><span class="octicon octicon-link"></span></a><a name="example-lambda"></a>Java 8 Lambda</h2>
+<a id="java-8-lambda" class="anchor" href="#java-8-lambda" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="example-lambda"></a>Java 8 Lambda</h2>
 
 <p>Now this is pretty cool when used with Java 8 Lambda!</p>
 
-<div class="highlight highlight-Java"><pre><span class="n">dm</span><span class="o">.</span><span class="na">when</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="o">{</span>
-  <span class="k">return</span> <span class="s">"Hey!"</span><span class="o">;</span>
-<span class="o">}).</span><span class="na">done</span><span class="o">(</span><span class="n">r</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">r</span><span class="o">));</span>
+<div class="highlight highlight-source-java"><pre>dm<span class="pl-k">.</span>when(() <span class="pl-k">-</span><span class="pl-k">&gt;</span> {
+  <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>Hey!<span class="pl-pds">"</span></span>;
+})<span class="pl-k">.</span>done(r <span class="pl-k">-</span><span class="pl-k">&gt;</span> <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(r));
 
-<span class="n">dm</span><span class="o">.</span><span class="na">when</span><span class="o">(</span>
-  <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="k">return</span> <span class="s">"Hello"</span><span class="o">;</span> <span class="o">},</span>
-  <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span> <span class="k">return</span> <span class="s">"World"</span><span class="o">;</span> <span class="o">}</span>
-<span class="o">).</span><span class="na">done</span><span class="o">(</span><span class="n">rs</span> <span class="o">-&gt;</span>
-  <span class="n">rs</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">r</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">r</span><span class="o">.</span><span class="na">getResult</span><span class="o">()))</span>
-<span class="o">);</span>
-</pre></div>
+dm<span class="pl-k">.</span>when(
+  () <span class="pl-k">-</span><span class="pl-k">&gt;</span> { <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>Hello<span class="pl-pds">"</span></span>; },
+  () <span class="pl-k">-</span><span class="pl-k">&gt;</span> { <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">"</span>World<span class="pl-pds">"</span></span>; }
+)<span class="pl-k">.</span>done(rs <span class="pl-k">-</span><span class="pl-k">&gt;</span>
+  rs<span class="pl-k">.</span>forEach(r <span class="pl-k">-</span><span class="pl-k">&gt;</span> <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(r<span class="pl-k">.</span>getResult()))
+);</pre></div>
+
+<h2>
+<a id="groovy" class="anchor" href="#groovy" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a name="example-groovy"></a>Groovy</h2>
+
+<p>You can also easily use with Groovy!</p>
+
+<div class="highlight highlight-source-groovy"><pre><span class="pl-k">@Grab</span>(<span class="pl-s"><span class="pl-pds">'</span>org.jdeferred:jdeferred-core:1.2.4<span class="pl-pds">'</span></span>)
+<span class="pl-k">import</span> <span class="pl-smi">org.jdeferred.*</span>
+<span class="pl-k">import</span> <span class="pl-smi">org.jdeferred.impl.*</span>
+
+<span class="pl-k">def</span> deferred <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-k">DeferredObject</span>()
+<span class="pl-k">def</span> promise <span class="pl-k">=</span> deferred<span class="pl-k">.</span>promise()
+
+promise<span class="pl-k">.</span>done { <span class="pl-v">result</span> <span class="pl-k">-&gt;</span>
+  <span class="pl-c1">println</span> <span class="pl-s"><span class="pl-pds">"</span>done: <span class="pl-smi">$r<span class="pl-smi">esult</span></span><span class="pl-pds">"</span></span> 
+}<span class="pl-k">.</span><span class="pl-c1">fail</span> { <span class="pl-v">rejection</span> <span class="pl-k">-&gt;</span>
+  <span class="pl-c1">println</span> <span class="pl-s"><span class="pl-pds">"</span>fail: <span class="pl-smi">$r<span class="pl-smi">ejection</span></span><span class="pl-pds">"</span></span>
+}<span class="pl-k">.</span>always { <span class="pl-v">state</span>, <span class="pl-v">result</span>, <span class="pl-v">rejection</span> <span class="pl-k">-&gt;</span>
+  <span class="pl-c1">println</span> <span class="pl-s"><span class="pl-pds">"</span>always<span class="pl-pds">"</span></span>
+}
+
+deferred<span class="pl-k">.</span>resolve(<span class="pl-s"><span class="pl-pds">"</span>done<span class="pl-pds">"</span></span>)</pre></div>
+
+
+
+
+
+
+
+
+<div>
+<img height="1" width="1" alt="" src="//www.googleadservices.com/pagead/conversion/974052972/?value=0&amp;label=wsVZCOycvgkQ7Ly70AM&amp;guid=ON&amp;script=0">
+</div>
+
       </section>
     </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
 
