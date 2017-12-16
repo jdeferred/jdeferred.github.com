@@ -1,0 +1,8 @@
+title: JDeferred
+description: Java Deferred / Promise library
+google_analytics: UA-7701209-6
+show_downloads: true
+theme: jekyll-theme-slate
+
+gems:
+  - jekyll-mentions
