@@ -1,0 +1,843 @@
+<!DOCTYPE html><html>
+  <head>
+    <title>Binary Compatibility Report - jdeferred-2.0.0</title>
+    <style>
+                        body{margin:0;padding:0;font-family:sans-serif;font-size:12pt;}
+                        body,a,a:visited{color:#303030;}
+                        #content{padding-left:50px;padding-right:50px;padding-top:30px;padding-bottom:30px;}
+                        #content h1{font-size:160%;margin-bottom:10px;}
+                        #footer{margin-top:100px;font-size:80%;white-space:nowrap;}
+                        #footer,#footer a{color:#a0a0a0;}
+                        ul{margin-left:0;}
+                        h1,h2,h3{white-space:nowrap;}
+                        h2{font-size:120%;}
+                        div.selected{display:block;}
+                        div.deselected{display:none;}
+                        #maintable{width:100%;border-collapse:collapse;}
+                        #maintable th,#maintable td{border-bottom:solid #d0d0d0 1px;}
+                        #maintable td{vertical-align:top}
+                        th{text-align:left;white-space:nowrap;padding-left:2em;}
+                        th:first-child{padding-left:0;}
+                        td{padding-left:2em;padding-top:5px;padding-bottom:5px;}
+                        td:first-child{padding-left:0;width:30%}
+                        td.numeric,th.numeric{text-align:right;}
+                        span.code{display:inline-block;margin-top:0em;margin-bottom:1em;}
+                        span.code pre{font-size:11pt;padding-top:10px;padding-bottom:10px;padding-left:10px;padding-right:10px;margin:0;background-color:#f7f7f7;border:solid 1px #d0d0d0;min-width:700px;width:auto !important;width:700px;}
+                        ul{margin:0px;padding:0px;}
+                        .warning,.warning a{color:#fbcc45;}
+                        .error,.error a{color:#b60808;}
+                        .info, .info a{color:#3879d9}
+                        #summary {margin-top: 30px;margin-bottom: 40px;border: solid 2px #d0d0d0;width:400px}
+                        #summary table{border:none;}
+                        #summary td{vertical-align:top;width:110px;padding-top:15px;padding-bottom:15px;text-align:center;}
+                        #summary td p{margin:0;}
+                       </style>
+  </head>
+  <body>
+    <div id='content'>
+      <h1>Binary Compatibility Report - jdeferred-2.0.0</h1>
+      <div id='summary'>
+        <table>
+          <tr>
+            <td>
+              <p class='error'>ERROR</p>
+              <div>66</div>
+            </td>
+            <td>
+              <p class='warning'>WARNING</p>
+              <div>0</div>
+            </td>
+            <td>
+              <p class='info'>INFO</p>
+              <div>129</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <table id='maintable'>
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Results</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>org.jdeferred2.AlwaysPipe</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='info'>INFO(8000): </span>Class org.jdeferred2.AlwaysPipe added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.CallbackExceptionHandler</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='info'>INFO(8000): </span>Class org.jdeferred2.CallbackExceptionHandler added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.CallbackExceptionHandler$CallbackType</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='info'>INFO(8000): </span>Class org.jdeferred2.CallbackExceptionHandler$CallbackType added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.CancellationHandler</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='info'>INFO(8000): </span>Class org.jdeferred2.CancellationHandler added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.DeferredFutureTask</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public DeferredFutureTask(java.util.concurrent.Callable, org.jdeferred2.CancellationHandler)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public DeferredFutureTask(java.lang.Runnable, org.jdeferred2.CancellationHandler)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public DeferredFutureTask(org.jdeferred2.DeferredCallable, org.jdeferred2.CancellationHandler)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public DeferredFutureTask(org.jdeferred2.DeferredRunnable, org.jdeferred2.CancellationHandler)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'protected java.lang.Throwable causeOf(java.lang.Exception)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'protected void cleanup()' has been added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.DeferredManager</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='error'>ERROR(7004): </span>In method 'public org.jdeferred2.Promise when(java.lang.Runnable[])' the number of arguments has changed
+                </li>
+                <li>
+                  <span class='error'>ERROR(7004): </span>In method 'public org.jdeferred2.Promise when(java.util.concurrent.Callable[])' the number of arguments has changed
+                </li>
+                <li>
+                  <span class='error'>ERROR(7004): </span>In method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredRunnable[])' the number of arguments has changed
+                </li>
+                <li>
+                  <span class='error'>ERROR(7004): </span>In method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredCallable[])' the number of arguments has changed
+                </li>
+                <li>
+                  <span class='error'>ERROR(7004): </span>In method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredFutureTask[])' the number of arguments has changed
+                </li>
+                <li>
+                  <span class='error'>ERROR(7004): </span>In method 'public org.jdeferred2.Promise when(java.util.concurrent.Future[])' the number of arguments has changed
+                </li>
+                <li>
+                  <span class='error'>ERROR(7005): </span>Parameter 1 of 'public org.jdeferred2.Promise when(org.jdeferred2.Promise[])' has changed its type to java.lang.Iterable
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise race(java.lang.Runnable, java.lang.Runnable, java.lang.Runnable[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise race(java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise race(org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise race(org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise race(java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise race(org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise race(java.lang.Iterable)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise reject(java.lang.Object)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise resolve(java.lang.Object)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise settle(java.lang.Runnable, java.lang.Runnable, java.lang.Runnable[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise settle(java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise settle(org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise settle(org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise settle(java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise settle(org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise settle(org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise settle(java.lang.Iterable)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(java.lang.Runnable, java.lang.Runnable, java.lang.Runnable[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask[])' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future)' has been added to an interface
+                </li>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise when(java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future[])' has been added to an interface
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.DeferredManager$StartPolicy</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='error'>ERROR(6001): </span>Removed field MANAUL
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.android.AndroidDeferredManager</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='error'>ERROR(7002): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.android.DeferredAsyncTask[])' has been removed
+                </li>
+                <li>
+                  <span class='error'>ERROR(7002): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.android.AndroidExecutionScope, org.jdeferred2.android.DeferredAsyncTask[])' has been removed
+                </li>
+                <li>
+                  <span class='error'>ERROR(7002): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.Promise[])' has been removed
+                </li>
+                <li>
+                  <span class='error'>ERROR(7002): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.android.AndroidExecutionScope, org.jdeferred2.Promise[])' has been removed
+                </li>
+                <li>
+                  <span class='info'>INFO(5000): </span>Added org.jdeferred2.impl.DefaultAndroidDeferredManager to the list of superclasses
+                </li>
+                <li>
+                  <span class='info'>INFO(7000): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.android.DeferredAsyncTask)' is now implemented in superclass org.jdeferred2.impl.DefaultAndroidDeferredManager
+                </li>
+                <li>
+                  <span class='info'>INFO(7000): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.Promise, org.jdeferred2.android.AndroidExecutionScope)' is now implemented in superclass org.jdeferred2.impl.DefaultAndroidDeferredManager
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredFutureTask)' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.Promise)' has been removed, but an inherited definition exists.
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.impl.AbstractDeferredManager</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='error'>ERROR(7004): </span>In method 'public org.jdeferred2.Promise when(java.util.concurrent.Callable[])' the number of arguments has changed
+                </li>
+                <li>
+                  <span class='error'>ERROR(7004): </span>In method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredRunnable[])' the number of arguments has changed
+                </li>
+                <li>
+                  <span class='error'>ERROR(7004): </span>In method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredCallable[])' the number of arguments has changed
+                </li>
+                <li>
+                  <span class='error'>ERROR(7004): </span>In method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredFutureTask[])' the number of arguments has changed
+                </li>
+                <li>
+                  <span class='error'>ERROR(7004): </span>In method 'public org.jdeferred2.Promise when(java.util.concurrent.Future[])' the number of arguments has changed
+                </li>
+                <li>
+                  <span class='error'>ERROR(7004): </span>In method 'public org.jdeferred2.Promise when(org.jdeferred2.Promise[])' the number of arguments has changed
+                </li>
+                <li>
+                  <span class='error'>ERROR(7005): </span>Parameter 1 of 'public org.jdeferred2.Promise when(java.lang.Runnable[])' has changed its type to java.lang.Iterable
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field CALLABLE_V1
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field CALLABLE_V2
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field CALLABLE_V3
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field CALLABLE_V4
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field CALLABLE_V5
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field FUTURE_V1
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field FUTURE_V2
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field FUTURE_V3
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field FUTURE_V4
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field FUTURE_V5
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field PROMISE_V1
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field PROMISE_V2
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field PROMISE_V3
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field PROMISE_V4
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field PROMISE_V5
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field RUNNABLE_V1
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field RUNNABLE_V2
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field RUNNABLE_V3
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field RUNNABLE_V4
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field RUNNABLE_V5
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field TASK_V1
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field TASK_V2
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field TASK_V3
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field TASK_V4
+                </li>
+                <li>
+                  <span class='info'>INFO(6000): </span>Added protected field TASK_V5
+                </li>
+                <li>
+                  <span class='info'>INFO(7007): </span>Method 'protected void assertNotEmpty(java.lang.Object[])' has been deprecated
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'protected void assertNotNull(java.lang.Object, java.lang.String)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'protected boolean canPromise(java.lang.Object)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'protected org.jdeferred2.DeferredCallable deferredCallableFor(java.util.concurrent.Future)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise race(java.lang.Runnable, java.lang.Runnable, java.lang.Runnable[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise race(java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise race(org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise race(org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise race(java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise race(org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise race(java.lang.Iterable)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise reject(java.lang.Object)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise resolve(java.lang.Object)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise settle(java.lang.Runnable, java.lang.Runnable, java.lang.Runnable[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise settle(java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise settle(org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise settle(org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise settle(java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise settle(org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise settle(org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise settle(java.lang.Iterable)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'protected org.jdeferred2.Promise submitForSingle(org.jdeferred2.DeferredFutureTask[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'protected org.jdeferred2.DeferredFutureTask toDeferredFutureTask(java.lang.Object)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'protected org.jdeferred2.Promise toPromise(java.lang.Object)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise, org.jdeferred2.Promise[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(java.lang.Runnable, java.lang.Runnable, java.lang.Runnable[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable, java.util.concurrent.Callable[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable, org.jdeferred2.DeferredRunnable[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable, org.jdeferred2.DeferredCallable[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask, org.jdeferred2.DeferredFutureTask[])' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public org.jdeferred2.Promise when(java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future, java.util.concurrent.Future[])' has been added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.impl.AbstractPromise</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise always(org.jdeferred2.AlwaysPipe alwaysFilter)' has been added
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'protected void handleException(org.jdeferred2.CallbackExceptionHandler$CallbackType, java.lang.Exception)' has been added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.impl.DefaultCallbackExceptionHandler</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='info'>INFO(8000): </span>Class org.jdeferred2.impl.DefaultCallbackExceptionHandler added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.impl.DelegatingPromise</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise always(org.jdeferred2.AlwaysPipe alwaysFilter)' has been added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.impl.DeferredPromise</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='info'>INFO(5000): </span>Added org.jdeferred2.impl.DelegatingPromise to the list of superclasses
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public org.jdeferred2.Promise always(org.jdeferred2.AlwaysCallback)' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public org.jdeferred2.Promise done(org.jdeferred2.DoneCallback)' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public org.jdeferred2.Promise fail(org.jdeferred2.FailCallback)' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public boolean isPending()' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public boolean isRejected()' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public boolean isResolved()' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public org.jdeferred2.Promise progress(org.jdeferred2.ProgressCallback)' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public org.jdeferred2.Promise$State state()' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public org.jdeferred2.Promise then(org.jdeferred2.DoneCallback)' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public org.jdeferred2.Promise then(org.jdeferred2.DoneCallback, org.jdeferred2.FailCallback)' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public org.jdeferred2.Promise then(org.jdeferred2.DoneCallback, org.jdeferred2.FailCallback, org.jdeferred2.ProgressCallback)' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public org.jdeferred2.Promise then(org.jdeferred2.DoneFilter)' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public org.jdeferred2.Promise then(org.jdeferred2.DoneFilter, org.jdeferred2.FailFilter)' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public org.jdeferred2.Promise then(org.jdeferred2.DoneFilter, org.jdeferred2.FailFilter, org.jdeferred2.ProgressFilter)' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public org.jdeferred2.Promise then(org.jdeferred2.DonePipe)' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public org.jdeferred2.Promise then(org.jdeferred2.DonePipe, org.jdeferred2.FailPipe)' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public org.jdeferred2.Promise then(org.jdeferred2.DonePipe, org.jdeferred2.FailPipe, org.jdeferred2.ProgressPipe)' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public void waitSafely()' has been removed, but an inherited definition exists.
+                </li>
+                <li>
+                  <span class='info'>INFO(7003): </span>Method 'public void waitSafely(long)' has been removed, but an inherited definition exists.
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.impl.GlobalConfiguration</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='info'>INFO(8000): </span>Class org.jdeferred2.impl.GlobalConfiguration added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.impl.PipedPromise</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='error'>ERROR(7012): </span>Method 'public org.jdeferred2.Promise always(org.jdeferred2.AlwaysPipe alwaysFilter)' has been added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.multiple.AllValues</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='info'>INFO(8000): </span>Class org.jdeferred2.multiple.AllValues added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.multiple.MasterDeferredObject</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='error'>ERROR(8001): </span>Class org.jdeferred2.multiple.MasterDeferredObject removed
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.multiple.MultipleResults</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='error'>ERROR(2000): </span>Changed from class to interface
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.multiple.MultipleResults2</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='info'>INFO(8000): </span>Class org.jdeferred2.multiple.MultipleResults2 added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.multiple.MultipleResults3</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='info'>INFO(8000): </span>Class org.jdeferred2.multiple.MultipleResults3 added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.multiple.MultipleResults4</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='info'>INFO(8000): </span>Class org.jdeferred2.multiple.MultipleResults4 added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.multiple.MultipleResults5</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='info'>INFO(8000): </span>Class org.jdeferred2.multiple.MultipleResults5 added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.multiple.MultipleResultsN</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='info'>INFO(8000): </span>Class org.jdeferred2.multiple.MultipleResultsN added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.multiple.OneProgress</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='info'>INFO(4000): </span>Added org.jdeferred2.multiple.OneValue to the set of implemented interfaces
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public java.lang.Object getValue()' has been added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.multiple.OneReject</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='info'>INFO(4000): </span>Added org.jdeferred2.multiple.OneValue to the set of implemented interfaces
+                </li>
+                <li>
+                  <span class='info'>INFO(5000): </span>Added org.jdeferred2.multiple.AbstractOneValue to the list of superclasses
+                </li>
+                <li>
+                  <span class='info'>INFO(7000): </span>Method 'public int getIndex()' is now implemented in superclass org.jdeferred2.multiple.AbstractOneValue
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public java.lang.Object getValue()' has been added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.multiple.OneResult</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='info'>INFO(4000): </span>Added org.jdeferred2.multiple.OneValue to the set of implemented interfaces
+                </li>
+                <li>
+                  <span class='info'>INFO(5000): </span>Added org.jdeferred2.multiple.AbstractOneValue to the list of superclasses
+                </li>
+                <li>
+                  <span class='info'>INFO(7000): </span>Method 'public int getIndex()' is now implemented in superclass org.jdeferred2.multiple.AbstractOneValue
+                </li>
+                <li>
+                  <span class='info'>INFO(7011): </span>Method 'public java.lang.Object getValue()' has been added
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>org.jdeferred2.multiple.OneValue</td>
+            <td>
+              <ul>
+                <li>
+                  <span class='info'>INFO(8000): </span>Class org.jdeferred2.multiple.OneValue added
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
