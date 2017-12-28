@@ -1,5 +1,5 @@
 <!--
-  Copyright 2013-2017 Ray Tsang
+  Copyright 2013 Ray Tsang
   
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -32,12 +32,8 @@ Inspired by [JQuery](https://github.com/jquery/jquery) and [Android Deferred Obj
   * ```.always(…)```
 * Multiple promises
   * ```.when(p1, p2, p3, …).then(…)```
-  * ```.race(p1, p2, p3, …).then(…)```
-  * ```.settle(p1, p2, p3, …).then(…)```
 * Callable and Runnable wrappers
   * ```.when(new Runnable() {…})```
-  * ```.race(new Runnable() {…})```
-  * ```.settle(new Runnable() {…})```
 * Uses Executor Service
 * Java Generics support
   * ```Deferred<Integer, Exception, Double> deferred;```
@@ -52,49 +48,19 @@ Maven
 -----
 ```xml
 <dependency>
-   <groupId>org.jdeferred2</groupId>
-   <artifactId>jdeferred-core</artifactId>
-   <version>${version}</version>
+    <groupId>org.jdeferred</groupId>
+    <artifactId>jdeferred-core</artifactId>
+    <version>${version}</version>
 </dependency>
 ```
 
 Gradle
 -----
 ```
-compile 'org.jdeferred2:jdeferred-android-aar:${version}'
-// or
-compile 'org.jdeferred2:jdeferred-android-aar:${version}@aar'
+compile 'org.jdeferred:jdeferred-core:${version}'
 ```
 
 Find available versions on [Maven Central Repository](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.jdeferred%22%20AND%20a%3A%22jdeferred-core%22).
-
-Please note that JDeferred 2.x is published under the `org.jdeferred2` group and uses `org.jdeferred2` as base package name.
-Use the following coordinates if you're looking for an older version of JDeferred
-
-Maven
------
-```xml
-<dependency>
-   <groupId>org.jdeferred</groupId>
-   <artifactId>jdeferred-core</artifactId>
-   <version>${version}</version>
-</dependency>
-```
-
-Gradle
------
-```
-compile 'org.jdeferred:jdeferred-android-aar:${version}'
-// or
-compile 'org.jdeferred:jdeferred-android-aar:${version}@aar'
-```
-
-<a name="compatibility"></a>Compatibility
-==============
-
-Compatibility reports between versions
-
- * [2.0.0](compatibility-report-2.0.0.html)
 
 <a name="examples"></a>Quick Examples
 ==============
@@ -276,7 +242,6 @@ try {
   ... 
 }
 ```
-
 <a name="example-lambda"></a>Java 8 Lambda
 -------------
 Now this is pretty cool when used with Java 8 Lambda!
@@ -294,144 +259,14 @@ dm.when(
 );
 ```
 
-<a name="example-race"></a>When
--------------
-Calls to `when` with multiple arguments results in a `Promise` that signals `fail` on the first rejection or signals
-`done` with all computed values.
-
-#### Success scenario
-```Java
-Callable<Integer> c1 = () -> 1;
-Callable<Integer> c2 = () -> 2;
-Callable<Integer> c3 = () -> 3;
-Promise<MultipleResults3<Integer, Integer, Integer>, OneReject<Throwable>, MasterProgress> p = dm.when(c1, c2, c3);
-p.done(MultipleResults3<Integer, Integer, Integer> r -> {
-  Assert.assertEquals(r.getFirst(), 1);
-  Assert.assertEquals(r.getSecond(), 2);
-  Assert.assertEquals(r.getThird(), 3);
-});
-```
-
-#### Failure scenario
-```Java
-Callable<Integer> c1 = () -> 1;
-Callable<Integer> c2 = () -> 2;
-Callable<Integer> c3 = () -> throw new RuntimeException("boom!");
-Promise<MultipleResults3<Integer, Integer, Integer>, OneReject<Throwable>, MasterProgress> p = dm.when(c1, c2, c3);
-p.done(MultipleResults3<Integer, Integer, Integer> r -> Assert.fail("should not be called"))
- .fail(OneReject<Throwable> r -> Assert.assertEquals(r.getReject().getMessage(), "boom!"));
-```
-> Since 2.0.0
-
-Calls to `when` with multiple arguments (up to five) will produce results with typesafe getters.
-
-<a name="example-when"></a>Race
--------------
-> Since 2.0.0
-
-Calls to `race` with multiple arguments results in a `Promise` that signals `fail` on the first rejection or signals
-`done` on the first resolution.
-
-#### Success scenario
-```Java
-Callable<Integer> c1 = () -> { Thread.sleep(200); return 1; };
-Callable<Integer> c2 = () -> { Thread.sleep(100); return 2; };
-Callable<Integer> c3 = () -> { Thread.sleep(200); return 3; };
-Promise<OneResult<?>, OneReject<Throwable>, Void> p = dm.race(c1, c2, c3);
-p.done(OneResult<?> r -> Assert.assertEquals(r.getResult(), 2));
-```
-#### Failure scenario
-```Java
-Callable<Integer> c1 = () -> { Thread.sleep(200); return 1; };
-Callable<Integer> c2 = () -> { Thread.sleep(100); throw new RuntimeException("boom!"); };
-Callable<Integer> c3 = () -> { Thread.sleep(200); return 3; };
-Promise<OneResult<?>, OneReject<Throwable>, Void> p = dm.race(c1, c2, c3);
-p.done(OneResult<?> r -> Assert.fail("should not be called")
-  .fail(OneReject<Throwable> r -> Assert.assertEquals(r.getReject().getMessage(), "boom!"));
-```
-
-<a name="example-settle"></a>Settle
--------------
-> Since 2.0.0
-
-Calls to `settle` with multiple arguments results in a `Promise` that collects all resolutions and rejections.
-
-```Java
-Callable<Integer> c1 = () -> { Thread.sleep(200); return 1; };
-Callable<Integer> c2 = () -> { Thread.sleep(100); throw new RuntimeException("boom!"); };
-Callable<Integer> c3 = () -> { Thread.sleep(200); return 3; };
-Promise<AllValues, Throwable, MasterProgress>, Void> p = dm.race(c1, c2, c3);
-p.done(AllValues r -> {
-  Assert.assertEquals(r.get(0).getValue(), 1);
-  Assert.assertTrue(r.get(1).getValue() instanceof RuntimeException);
-  Assert.assertEquals(r.get(2).getValue(), 3);
-});
-```
-
-<a name="example-cancellation"></a>Cancellation Handler
--------------
-> Since 2.0.0
-
-Sometimes a task may be cancelled while its running and would require ti cleanup any resources it may have allocated. You
-may define a task that implements the `org.jdeferred2.CancellationHandler` interface or pass and extra argument to
-`DeferredFutureTask` with such implementation, for example
-
-```Java
-final DataSource datasource = ...;
-class DatabaseTask extends Runnable, CancellationHandler {
-  @Override
-  public void run() {
-    // perform computation with datasource
-  }
-
-  @Override
-  public void onCancel() {
-    try {
-      datasource.close();
-    } catch(Exception e) {
-      throw new IllegalStateException(e);
-    }
-  }
-}
-
-DeferredFutureTask<X> task = new DeferredFutureTask(new DatabaseTask());
-dm.when(task).done(...)
-```
-
-You may also pass the `CancellationHandler` as an additional argument, for example
-
-```Java
-final DataSource datasource = ...;
-class DatabaseTask extends Runnable {
-  @Override
-  public void run() {
-    // perform computation with datasource
-  }
-}
-
-class DatabaseCancellationHandler implements CancellationHandler {
-  @Override
-  public void onCancel() {
-    try {
-      datasource.close();
-    } catch(Exception e) {
-      throw new IllegalStateException(e);
-    }
-  }
-}
-
-DeferredFutureTask<X> task = new DeferredFutureTask(new DatabaseTask(), new DatabaseCancellationHandler());
-dm.when(task).done(...)
-```
-
 <a name="example-groovy"></a>Groovy
 -----
 You can also easily use with Groovy!
 
 ```Groovy
-@Grab('org.jdeferred2:jdeferred-core:2.0.0')
-import org.jdeferred2.*
-import org.jdeferred2.impl.*
+@Grab('org.jdeferred:jdeferred-core:1.2.6')
+import org.jdeferred.*
+import org.jdeferred.impl.*
 
 def deferred = new DeferredObject()
 def promise = deferred.promise()
@@ -452,30 +287,40 @@ deferred.resolve("done")
 > Since 1.1.0-Beta1
 
 ```jdeferred-android``` is now available, and it can be included just like any other Android libraries!
-It also uses Android Maven plugin and builds apklib file. If you use Android Maven plugin, you can include
+It also uses Android Maven plugin and builds apklib file.  If you use Android Maven plugin, you can include
 dependency:
 
-APKLIB:
+APKLIB with Maven:
 ```xml
 <dependency>
-  <groupId>org.jdeferred2</groupId>
+  <groupId>org.jdeferred</groupId>
   <artifactId>jdeferred-android</artifactId>
-  <version>...</version>
+  <version>${version}</version>
   <type>apklib</type>
 </dependency>
 ```
 
-AAR:
+
+AAR with Maven:
 > Since 1.2.0-Beta1
 
 ```xml
 <dependency>
-  <groupId>org.jdeferred2</groupId>
+  <groupId>org.jdeferred</groupId>
   <artifactId>jdeferred-android-aar</artifactId>
-  <version>...</version>
+  <version>${version}</version>
   <type>aar</type>
 </dependency>
 ```
+
+AAR with Gradle:
+```
+compile 'org.jdeferred:jdeferred-android-aar:${version}'
+// or
+compile 'org.jdeferred:jdeferred-android-aar:${version}@aar'
+```
+
+Find available versions on [Maven Central Repository](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.jdeferred%22%20AND%20a%3A%22jdeferred-core%22).
 
 ```jdeferred-android``` introduces a new ```DeferredManager``` implementation called ```AndroidDeferredManager```.
 ```AndroidDeferredManager``` makes sure that callbacks are executed in UI Thread rather than background Thread
@@ -556,24 +401,3 @@ var google_remarketing_only = false;
 <a name="deprecations-v1.2.5"></a>v1.2.5
 --------
 * ~~```DeferredManager.StartPolicy.MANAUL```~~ is deprecated and will be removed in the next minor version. Use ```DeferredManager.StartPolicy.MANUAL``` instead.
-
-
-<!-- Google Code for GitHub Visit Conversion Page -->
-<script type="text/javascript">
-/* <![CDATA[ */
-var google_conversion_id = 974052972;
-var google_conversion_language = "en";
-var google_conversion_format = "3";
-var google_conversion_color = "ffffff";
-var google_conversion_label = "wsVZCOycvgkQ7Ly70AM";
-var google_conversion_value = 0;
-var google_remarketing_only = false;
-/* ]]> */
-</script>
-<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
-</script>
-<noscript>
-<div style="display:inline;">
-<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/974052972/?value=0&amp;label=wsVZCOycvgkQ7Ly70AM&amp;guid=ON&amp;script=0"/>
-</div>
-</noscript>
