@@ -14,8 +14,8 @@
   limitations under the License.
 -->
 
-JDeferred
-=========
+JDeferred 1.x Documentation
+===========================
 
 JDeferred is a Java Deferred/Promise library similar to JQuery's Deferred Object.
 
