@@ -15,7 +15,7 @@
 -->
 
 JDeferred 2.x
-=============
+==============
 
 JDeferred is a Java Deferred/Promise library similar to JQuery's Deferred Object.
 
@@ -28,10 +28,13 @@ If you are using JDeferred 1.x, see [JDeferred 1.x Documentation](http://jdeferr
 * Deferred object and Promise
 * Promise callbacks
   * ```.then(…)```
+  * ```.filter(…)```
+  * ```.pipe(…)```
   * ```.done(…)```
   * ```.fail(…)```
   * ```.progress(…)```
   * ```.always(…)```
+  * ```.pipeAlways(…)```
 * Multiple promises
   * ```.when(p1, p2, p3, …).then(…)```
   * ```.race(p1, p2, p3, …).then(…)```
@@ -110,10 +113,12 @@ deferred.notify("100%");
 
 <a name="example-filter"></a>Filter
 -----------
+> Use `.filter(...)` instead of `.then(...)` since 2.0.0-Beta2
+
 ```java
 Deferred d = …;
 Promise p = d.promise();
-Promise filtered = p.then(new DoneFilter<Integer, Integer>() {
+Promise filtered = p.filter(new DoneFilter<Integer, Integer>() {
   public Integer filterDone(Integer result)
     return result * 10;
   }
@@ -131,13 +136,13 @@ d.resolve(3) -> 30.
 
 <a name="example-pipe"></a>Pipe
 ----
-> Since 1.1.0-Beta1
+> Use `.pipe(...)` instead of `.then(...)` since 2.0.0-Beta2
 
 ```java
 Deferred d = ...;
 Promise p = d.promise();
 
-p.then(new DonePipe<Integer, Integer, Exception, Void>() {
+p.pipe(new DonePipe<Integer, Integer, Exception, Void>() {
   public Deferred<Integer, Exception, Void> pipeDone(Integer result) {
     if (result < 100) {
       return new DeferredObject<Integer, Void, Void>().resolve(result);
